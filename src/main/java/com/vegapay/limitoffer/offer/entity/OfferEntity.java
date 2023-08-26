@@ -18,13 +18,13 @@ public class OfferEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "limit_offer_id")
-    private int limitOfferId;
+    private Integer limitOfferId;
 
     @Column(name = "account_id")
-    private int accountId;
+    private Integer accountId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "limit_type")
+    @Column(name = "limit_type", columnDefinition = "VARCHAR")
     private LimitType limitType;
 
     @Column(name = "new_limit")
@@ -37,6 +37,6 @@ public class OfferEntity {
     private LocalDate offerExpiryTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "VARCHAR")
     private Status status;
 }

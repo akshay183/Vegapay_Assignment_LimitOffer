@@ -17,22 +17,22 @@ public class AccountEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
-    private int accountId;
+    private Integer accountId;
 
     @Column(name = "customer_id")
-    private int customerId;
+    private Integer customerId;
 
     @Column(name = "account_limit")
-    private double accountLimit;
+    private Integer accountLimit;
 
     @Column(name = "per_transaction_limit")
-    private double perTransactionLimit;
+    private Integer perTransactionLimit;
 
     @Column(name = "last_account_limit")
-    private double lastAccountLimit;
+    private Integer lastAccountLimit;
 
     @Column(name = "last_per_transaction_limit")
-    private double lastPerTransactionLimit;
+    private Integer lastPerTransactionLimit;
 
     @Column(name = "account_limit_update_time")
     private LocalDate accountLimitUpdateTime;
