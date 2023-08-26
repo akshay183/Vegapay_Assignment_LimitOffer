@@ -59,7 +59,7 @@ public class LimitOfferService {
         }
         catch (Exception e) {
             log.info(e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            return (e.getMessage());
         }
     }
 }
