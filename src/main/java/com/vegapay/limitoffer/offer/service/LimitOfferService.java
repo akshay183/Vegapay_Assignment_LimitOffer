@@ -7,7 +7,10 @@ import com.vegapay.limitoffer.offer.model.UpdateStatusRequest;
 import com.vegapay.limitoffer.offer.repository.LimitOfferRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +25,28 @@ public class LimitOfferService {
         this.limitOfferRepository = customQueryService;
         this.accountService = accountService;
     }
+
+    public List<OfferEntity> findActiveLimitOffers(Integer accountId, LocalDate activeDate) {
+
+        try{
+            List<OfferEntity> offerEntities;
+
+            if(ObjectUtils.isEmpty(activeDate)) {
+                offerEntities = limitOfferRepository.findActiveLimitOffers(accountId);
+            }
+            else {
+                offerEntities = limitOfferRepository.findActiveLimitOffers(accountId,activeDate);
+            }
+
+            return offerEntities;
+        }
+        catch (Exception e) {
+            log.info(e.getMessage());
+            throw new RuntimeException(e.getMessage());
+        }
+
+    }
+
     public String updateLimitOfferStatus(Integer limitOfferId, UpdateStatusRequest updateStatusRequest) {
 
         try{
