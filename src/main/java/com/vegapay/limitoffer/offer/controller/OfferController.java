@@ -1,6 +1,7 @@
 package com.vegapay.limitoffer.offer.controller;
 
 import com.vegapay.limitoffer.offer.entity.OfferEntity;
+import com.vegapay.limitoffer.offer.model.CreateLimitOfferRequest;
 import com.vegapay.limitoffer.offer.model.UpdateStatusRequest;
 import com.vegapay.limitoffer.offer.service.LimitOfferService;
 import jakarta.annotation.Nullable;
@@ -39,5 +40,19 @@ public class OfferController {
                                                 @RequestParam(name = "active_date") @Valid @Nullable LocalDate activeDate) {
 
         return new ResponseEntity<>(limitOfferService.findActiveLimitOffers(accountId, activeDate), HttpStatus.OK);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<String> createLimitOffer(@RequestBody CreateLimitOfferRequest createLimitOfferRequest) {
+        try {
+
+            limitOfferService.createLimitOffer(createLimitOfferRequest);
+            return ResponseEntity.ok("Limit offer created successfully.");
+        }
+        catch (Exception e) {
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to create limit offer.");
+        }
     }
 }
